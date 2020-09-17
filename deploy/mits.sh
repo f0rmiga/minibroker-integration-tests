@@ -47,6 +47,7 @@ helm install "${RELEASE_NAME}" "${CHART_TARBALL}" \
 function on_exit() {
   helm delete "${RELEASE_NAME}" --namespace "${NAMESPACE}"
   kubectl delete namespace "${NAMESPACE}"
+  ./clean_minibroker.sh
 }
 
 trap on_exit EXIT
